@@ -1,13 +1,13 @@
 # XBMC Media Center language file
-# XBMC-core v12.0-ALPHA7
+# XBMC-core v12.0
 msgid ""
 msgstr ""
 "Project-Id-Version: XBMC Main Translation Project (Frodo)\n"
 "Report-Msgid-Bugs-To: http://trac.xbmc.org/\n"
-"POT-Creation-Date: 2012-05-04 12:46+0000\n"
-"PO-Revision-Date: 2012-10-19 03:59+0000\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: XBMC Translation Team\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/XBMC-Main-Frodo/language/zh_TW/)\n"
+"Language-Team: Chinese (Traditional) (http://www.transifex.com/projects/p/XBMC-Main-Frodo/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -276,23 +276,23 @@ msgstr "不定向"
 
 msgctxt "#88"
 msgid "South"
-msgstr ""
+msgstr "南"
 
 msgctxt "#89"
 msgid "North"
-msgstr ""
+msgstr "北"
 
 msgctxt "#90"
 msgid "West"
-msgstr ""
+msgstr "西"
 
 msgctxt "#91"
 msgid "East"
-msgstr ""
+msgstr "東"
 
 msgctxt "#92"
 msgid "Variable"
-msgstr ""
+msgstr "不定向"
 
 msgctxt "#98"
 msgid "View: Auto"
@@ -396,15 +396,15 @@ msgstr "確認刪除檔案？"
 
 msgctxt "#123"
 msgid "Copy these files?"
-msgstr "複製這些檔案？"
+msgstr "要複製這些檔案嗎？"
 
 msgctxt "#124"
 msgid "Move these files?"
-msgstr "移動這些檔案？"
+msgstr "要移動些檔案嗎？"
 
 msgctxt "#125"
 msgid "Delete these files? - Deleting files cannot be undone!"
-msgstr "刪除這些檔案？ - 刪除後將無法復原！"
+msgstr "要刪除這些檔案嗎？ - 刪除後將無法復原！"
 
 msgctxt "#126"
 msgid "Status"
@@ -496,7 +496,7 @@ msgstr "靜態（手動指定）"
 
 msgctxt "#148"
 msgid "DHCP"
-msgstr "動態（自動分配）"
+msgstr "DHCP（自動分配）"
 
 msgctxt "#149"
 msgid "MAC address"
@@ -572,7 +572,7 @@ msgstr "佈景主題"
 
 msgctxt "#167"
 msgid "Cancel file operations"
-msgstr ""
+msgstr "取消檔案操作"
 
 msgctxt "#169"
 msgid "Resolution"
@@ -588,7 +588,7 @@ msgstr "發行日期"
 
 msgctxt "#173"
 msgid "Display 4:3 videos as"
-msgstr "播放4:3視訊的方式"
+msgstr "播放 4:3 視訊的方式"
 
 msgctxt "#175"
 msgid "Moods"
@@ -628,7 +628,7 @@ msgstr "正在搜尋專輯"
 
 msgctxt "#186"
 msgid "OK"
-msgstr "OK"
+msgstr "確定"
 
 msgctxt "#187"
 msgid "No albums found!"
@@ -696,7 +696,7 @@ msgstr "得票："
 
 msgctxt "#206"
 msgid "Cast"
-msgstr "演員表"
+msgstr "演員"
 
 msgctxt "#207"
 msgid "Plot"
@@ -888,7 +888,7 @@ msgstr "錯誤"
 
 msgctxt "#258"
 msgid "Enable tag reading"
-msgstr "啟用 檔案資訊讀取"
+msgstr "啟用檔案標籤讀取"
 
 msgctxt "#259"
 msgid "Opening"
@@ -1104,7 +1104,7 @@ msgstr "資料庫錯誤！"
 
 msgctxt "#316"
 msgid "Searching songs..."
-msgstr "搜尋歌曲…"
+msgstr "正在搜尋歌曲…"
 
 msgctxt "#317"
 msgid "Cleaned database successfully"
@@ -1112,7 +1112,7 @@ msgstr "成功清除資料庫！"
 
 msgctxt "#318"
 msgid "Cleaning songs..."
-msgstr "清除歌曲…"
+msgstr "正在清除歌曲…"
 
 msgctxt "#319"
 msgid "Error cleaning songs"
@@ -1164,7 +1164,7 @@ msgstr "這需要一些時間…"
 
 msgctxt "#331"
 msgid "Compressing database..."
-msgstr "壓縮資料庫…"
+msgstr "正在壓縮資料庫…"
 
 msgctxt "#332"
 msgid "Error compressing database"
@@ -1172,7 +1172,7 @@ msgstr "壓縮資料庫錯誤！"
 
 msgctxt "#333"
 msgid "Do you want to clean the library?"
-msgstr "要清除資料庫嗎？"
+msgstr "你確定要清除資料庫嗎？"
 
 msgctxt "#334"
 msgid "Clean library..."
@@ -1276,7 +1276,7 @@ msgstr "全部專輯"
 
 msgctxt "#359"
 msgid "Recently added albums"
-msgstr "新的專輯"
+msgstr "最近加入的專輯"
 
 msgctxt "#360"
 msgid "Screensaver"
@@ -1492,7 +1492,7 @@ msgstr "此專輯無評論"
 
 msgctxt "#415"
 msgid "Downloading thumbnail..."
-msgstr "下載縮略圖…"
+msgstr "正在下載縮略圖…"
 
 msgctxt "#416"
 msgid "Not available"
@@ -1560,7 +1560,7 @@ msgstr "從資料庫中移除影片"
 
 msgctxt "#433"
 msgid "Really remove '%s'?"
-msgstr "確定移除 '%s' 嗎？"
+msgstr "確定要移除 '%s' 嗎？"
 
 msgctxt "#434"
 msgid "From %s at %i %s"
@@ -1704,7 +1704,7 @@ msgstr "播放工具列位置"
 
 msgctxt "#470"
 msgid "Credits"
-msgstr "改機者"
+msgstr "工作人員"
 
 msgctxt "#471"
 msgid "Modchip"
@@ -1764,7 +1764,7 @@ msgstr "重複資料夾"
 
 msgctxt "#489"
 msgid "Play the next song automatically"
-msgstr "自動播放下個項目"
+msgstr "自動播放下一首歌項目"
 
 msgctxt "#491"
 msgid "- Use big icons"
@@ -1824,7 +1824,7 @@ msgstr "空的"
 
 msgctxt "#505"
 msgid "Loading media info from files..."
-msgstr "從檔案載入媒體資訊…"
+msgstr "正在從檔案載入媒體資訊…"
 
 msgctxt "#507"
 msgid "Sort by: Usage"
@@ -1848,7 +1848,7 @@ msgstr "主界面"
 
 msgctxt "#514"
 msgid "Manual settings"
-msgstr "設定界面"
+msgstr "手動設定"
 
 msgctxt "#515"
 msgid "Genre"
@@ -1884,7 +1884,7 @@ msgstr "選擇播放列表"
 
 msgctxt "#525"
 msgid "New playlist..."
-msgstr "新播放列表…"
+msgstr "新增播放列表…"
 
 msgctxt "#526"
 msgid "Add to playlist"
@@ -1964,7 +1964,7 @@ msgstr "媒體資訊"
 
 msgctxt "#545"
 msgid "Audio output device"
-msgstr "音效輸出設備"
+msgstr "音效輸出裝置"
 
 msgctxt "#546"
 msgid "Passthrough output device"
@@ -2116,7 +2116,7 @@ msgstr "編輯播放列表"
 
 msgctxt "#587"
 msgid "Filter"
-msgstr "濾鏡"
+msgstr "過濾"
 
 msgctxt "#588"
 msgid "Cancel party mode"
@@ -2192,7 +2192,7 @@ msgstr "無法擷取 CD 或音軌"
 
 msgctxt "#609"
 msgid "CDDARipPath is not set."
-msgstr "CD 擷取路徑未設定。"
+msgstr "CDDA 擷取路徑未設定。"
 
 msgctxt "#610"
 msgid "Rip audio track"
@@ -2203,12 +2203,12 @@ msgid "Enter number"
 msgstr "輸入數字"
 
 msgctxt "#612"
-msgid "Bits/Sample"
-msgstr "Bits/取樣"
+msgid "Bits/sample"
+msgstr "位元/樣本"
 
 msgctxt "#613"
-msgid "Sample Frequency"
-msgstr "取樣頻率"
+msgid "Sample rate"
+msgstr "取樣率"
 
 msgctxt "#620"
 msgid "Audio CDs"
@@ -2216,7 +2216,7 @@ msgstr "音樂 CD 擷取"
 
 msgctxt "#621"
 msgid "Encoder"
-msgstr "編碼"
+msgstr "編碼器"
 
 msgctxt "#622"
 msgid "Quality"
@@ -2233,10 +2233,6 @@ msgstr "包括音軌編號"
 msgctxt "#625"
 msgid "All songs of"
 msgstr "所有歌曲"
-
-msgctxt "#626"
-msgid "In progress TV shows"
-msgstr ""
 
 msgctxt "#629"
 msgid "View mode"
@@ -2320,11 +2316,11 @@ msgstr "匯入視訊資料庫"
 
 msgctxt "#649"
 msgid "Importing"
-msgstr "匯入中"
+msgstr "正在匯入"
 
 msgctxt "#650"
 msgid "Exporting"
-msgstr "匯出中"
+msgstr "正在匯出"
 
 msgctxt "#651"
 msgid "Browse for library"
@@ -2492,7 +2488,7 @@ msgstr "無密碼"
 
 msgctxt "#735"
 msgid "- Character set"
-msgstr "- 編碼"
+msgstr "- 字元編碼"
 
 msgctxt "#736"
 msgid "- Style"
@@ -2728,7 +2724,7 @@ msgstr "資料庫更新"
 
 msgctxt "#800"
 msgid "Music library needs to rescan art from tags"
-msgstr ""
+msgstr "音樂資料庫需要從標籤重新掃描圖片"
 
 msgctxt "#801"
 msgid "Would you like to scan now?"
@@ -2960,7 +2956,7 @@ msgstr "輸入網路位址"
 
 msgctxt "#1200"
 msgid "SMB client"
-msgstr "SMB 共享設定"
+msgstr "SMB 客戶端"
 
 msgctxt "#1202"
 msgid "Workgroup"
@@ -3104,11 +3100,11 @@ msgstr "AirPlay"
 
 msgctxt "#1275"
 msgid "Filter %s"
-msgstr ""
+msgstr "過濾%s"
 
 msgctxt "#1300"
 msgid "Custom audio device"
-msgstr "自訂音效設備"
+msgstr "自訂音效裝置"
 
 msgctxt "#1301"
 msgid "Custom passthrough device"
@@ -3184,7 +3180,7 @@ msgstr "風"
 
 msgctxt "#1413"
 msgid "Patches"
-msgstr ""
+msgstr "幾陣"
 
 msgctxt "#1414"
 msgid "Thunderstorm"
@@ -3204,11 +3200,11 @@ msgstr "花"
 
 msgctxt "#1418"
 msgid "Thunderstorms"
-msgstr ""
+msgstr "雷雨"
 
 msgctxt "#1419"
 msgid "Shallow"
-msgstr ""
+msgstr "淺"
 
 msgctxt "#1420"
 msgid "Moderate"
@@ -3228,107 +3224,87 @@ msgstr "靄"
 
 msgctxt "#1424"
 msgid "Overcast"
-msgstr ""
+msgstr "陰"
 
 msgctxt "#1425"
 msgid "Pellets"
-msgstr ""
+msgstr " 珠"
 
 msgctxt "#1426"
 msgid "Hail"
-msgstr ""
+msgstr "雹"
 
 msgctxt "#1427"
 msgid "Smoke"
-msgstr ""
+msgstr "煙"
 
 msgctxt "#1428"
 msgid "Volcanic"
-msgstr ""
+msgstr "火山"
 
 msgctxt "#1429"
 msgid "Ash"
-msgstr ""
-
-msgctxt "#1430"
-msgid "Widespread"
-msgstr ""
+msgstr "灰"
 
 msgctxt "#1431"
 msgid "Dust"
-msgstr ""
+msgstr "塵"
 
 msgctxt "#1432"
 msgid "Sand"
-msgstr ""
+msgstr "沙"
 
 msgctxt "#1433"
 msgid "Spray"
-msgstr ""
+msgstr "浪花"
 
 msgctxt "#1434"
 msgid "Whirls"
-msgstr ""
+msgstr "旋"
 
 msgctxt "#1435"
 msgid "Sandstorm"
-msgstr ""
+msgstr "沙暴"
 
 msgctxt "#1436"
 msgid "Blowing"
-msgstr ""
+msgstr "高吹"
 
 msgctxt "#1437"
 msgid "Pellet"
-msgstr ""
+msgstr "珠"
 
 msgctxt "#1438"
 msgid "Small"
-msgstr ""
+msgstr "小"
 
 msgctxt "#1439"
 msgid "and"
-msgstr ""
-
-msgctxt "#1440"
-msgid "Sleet"
-msgstr ""
+msgstr "且"
 
 msgctxt "#1441"
 msgid "with"
-msgstr ""
-
-msgctxt "#1442"
-msgid "Chance"
-msgstr ""
-
-msgctxt "#1443"
-msgid "of"
-msgstr ""
+msgstr "有"
 
 msgctxt "#1444"
 msgid "Funnel"
-msgstr ""
+msgstr "漏斗"
 
 msgctxt "#1445"
 msgid "Cloud"
-msgstr ""
+msgstr "雲"
 
 msgctxt "#1446"
 msgid "Unknown"
-msgstr ""
-
-msgctxt "#1447"
-msgid "Squals"
-msgstr ""
+msgstr "未知"
 
 msgctxt "#1448"
 msgid "Precipitation"
-msgstr ""
+msgstr "降雨量"
 
 msgctxt "#1449"
 msgid "Partial"
-msgstr ""
+msgstr "局部"
 
 msgctxt "#1450"
 msgid "Put display to sleep when idle"
@@ -3340,11 +3316,11 @@ msgstr "視訊時間"
 
 msgctxt "#2080"
 msgid "Empty list"
-msgstr ""
+msgstr "空白清單"
 
 msgctxt "#2081"
 msgid "Went back to parent list because the active list has been emptied"
-msgstr ""
+msgstr "因為列表已經被清空，回到上層列表"
 
 msgctxt "#2100"
 msgid "Script failed! : %s"
@@ -3660,7 +3636,7 @@ msgstr "←"
 
 msgctxt "#12321"
 msgid "Ok"
-msgstr "Ok"
+msgstr "確定"
 
 msgctxt "#12322"
 msgid "*"
@@ -3692,7 +3668,7 @@ msgstr "輸入手把按鍵組合並且"
 
 msgctxt "#12331"
 msgid "press OK, or Back to cancel"
-msgstr "按 Start 確認，或按 Back 取消"
+msgstr "按「確定」確認，或按 Back 取消"
 
 msgctxt "#12332"
 msgid "Set lock"
@@ -3760,19 +3736,19 @@ msgstr "項目被鎖定"
 
 msgctxt "#12349"
 msgid "Updating video library art"
-msgstr ""
+msgstr "正在更新影片資料庫的圖片"
 
 msgctxt "#12350"
 msgid "Processing %s"
-msgstr ""
+msgstr "正在處理 %s"
 
 msgctxt "#12351"
 msgid "The art cache in your video library needs updating."
-msgstr ""
+msgstr "你的影片資料庫的圖片快取需要更新。"
 
 msgctxt "#12352"
 msgid "No downloading is needed."
-msgstr ""
+msgstr "不需要下載。"
 
 msgctxt "#12353"
 msgid "Reactivate lock"
@@ -3780,7 +3756,7 @@ msgstr "重新上鎖"
 
 msgctxt "#12354"
 msgid "Would you like to update it now?"
-msgstr ""
+msgstr "你要現在更新嗎？"
 
 msgctxt "#12356"
 msgid "Change lock"
@@ -3816,7 +3792,7 @@ msgstr "系統設定和檔案管理員"
 
 msgctxt "#12376"
 msgid "Set as default for all videos"
-msgstr ""
+msgstr "設為所有影片的預設"
 
 msgctxt "#12377"
 msgid "This will reset any previously saved values"
@@ -4169,10 +4145,6 @@ msgstr "鬧鈴啟動，倒數計時 %i 分鐘"
 msgctxt "#13211"
 msgid "Alarm!"
 msgstr "響鈴！"
-
-msgctxt "#13212"
-msgid "Canceled with %im%is left"
-msgstr "鬧鈴取消，剩下 %i 分 %i 秒"
 
 msgctxt "#13213"
 msgid "%2.0fm"
@@ -4752,11 +4724,11 @@ msgstr "允許硬體加速（VideoToolbox）"
 
 msgctxt "#13433"
 msgid "Play the next video automatically"
-msgstr ""
+msgstr "自動播放下一個影片"
 
 msgctxt "#13434"
 msgid "Play only this"
-msgstr ""
+msgstr "只播放這個"
 
 msgctxt "#13500"
 msgid "A/V sync method"
@@ -4804,23 +4776,23 @@ msgstr "同步重播顯示"
 
 msgctxt "#13511"
 msgid "Choose art"
-msgstr ""
+msgstr "選擇圖片"
 
 msgctxt "#13512"
 msgid "Current art"
-msgstr ""
+msgstr "目前的圖片"
 
 msgctxt "#13513"
 msgid "Remote art"
-msgstr ""
+msgstr "遠端的圖片"
 
 msgctxt "#13514"
 msgid "Local art"
-msgstr ""
+msgstr "本地的圖片"
 
 msgctxt "#13515"
 msgid "No art"
-msgstr ""
+msgstr "沒有圖片"
 
 msgctxt "#13550"
 msgid "Pause during refresh rate change"
@@ -5236,7 +5208,7 @@ msgstr "CD 擷取完成後退出光碟"
 
 msgctxt "#14100"
 msgid "Stop ripping CD"
-msgstr ""
+msgstr "停止擷取CD"
 
 msgctxt "#15015"
 msgid "Remove"
@@ -5460,7 +5432,7 @@ msgstr "收聽 %name% 的同類型藝人在 Last.fm 廣播"
 
 msgctxt "#15268"
 msgid "Top artists for user %name%"
-msgstr "%name% 演出者排行"
+msgstr "%name% 的演出者排行"
 
 msgctxt "#15269"
 msgid "Top albums for user %name%"
@@ -5480,7 +5452,7 @@ msgstr "%name% 同好"
 
 msgctxt "#15273"
 msgid "Weekly artist chart for %name%"
-msgstr "%name% 演出者週排行"
+msgstr "%name% 的演出者週排行"
 
 msgctxt "#15274"
 msgid "Weekly album chart for %name%"
@@ -5679,8 +5651,8 @@ msgid "Bob (inverted)"
 msgstr "抖動(倒轉)"
 
 msgctxt "#16024"
-msgid "Canceling..."
-msgstr "取消中…"
+msgid "Cancelling..."
+msgstr "正在取消..."
 
 msgctxt "#16025"
 msgid "Enter the artist name"
@@ -5940,7 +5912,7 @@ msgstr "或使用片語以精確地尋找，例如 \"The wizard of Oz\"。"
 
 msgctxt "#19003"
 msgid "Find similar programs"
-msgstr ""
+msgstr "尋找相似的程式"
 
 msgctxt "#19004"
 msgid "Importing EPG from clients"
@@ -6026,10 +5998,6 @@ msgctxt "#19024"
 msgid "Radio channels"
 msgstr "無線電廣播頻道"
 
-msgctxt "#19025"
-msgid "Upcoming recordings"
-msgstr ""
-
 msgctxt "#19026"
 msgid "Add timer..."
 msgstr "新增定時器..."
@@ -6064,7 +6032,7 @@ msgstr "資訊"
 
 msgctxt "#19034"
 msgid "Already started recording on this channel"
-msgstr ""
+msgstr "已經開始對這個頻道錄影"
 
 msgctxt "#19035"
 msgid "This channel cannot be played. Check the log for details."
@@ -6072,7 +6040,7 @@ msgstr "無法播放這個頻道。詳情請查看日誌。"
 
 msgctxt "#19036"
 msgid "This recording cannot be played. Check the log for details."
-msgstr ""
+msgstr "這個錄影無法被播放。詳情請查閱日誌。"
 
 msgctxt "#19037"
 msgid "Show signal quality"
@@ -6092,7 +6060,7 @@ msgstr "定時器"
 
 msgctxt "#19041"
 msgid "Are you sure you want to rename this recording?"
-msgstr ""
+msgstr "你確定你要重新命名這個錄影嗎？"
 
 msgctxt "#19042"
 msgid "Are you sure you want to rename this timer?"
@@ -6100,7 +6068,7 @@ msgstr "你確定要重新命名這個計時器嗎？"
 
 msgctxt "#19043"
 msgid "Recording"
-msgstr "錄影中"
+msgstr "錄影"
 
 msgctxt "#19044"
 msgid "Please check your configuration or check the log for details."
@@ -6108,7 +6076,7 @@ msgstr "請檢查你的設定或從日誌查看詳情。"
 
 msgctxt "#19045"
 msgid "No PVR clients have been started yet. Wait for the PVR clients to start up or check the log for details."
-msgstr ""
+msgstr "尚未有啟動的 PVR 客戶端。請等候 PVR 客戶端啟動，或檢查記錄中是否有相關問題細節。"
 
 msgctxt "#19046"
 msgid "New channel"
@@ -6196,7 +6164,7 @@ msgstr "這個事件已經錄製"
 
 msgctxt "#19068"
 msgid "This recording could not be deleted. Check the log for details."
-msgstr ""
+msgstr "這個錄影無法被刪除。詳情請查閱日誌。"
 
 msgctxt "#19069"
 msgid "EPG"
@@ -6213,10 +6181,6 @@ msgstr "不要將電子節目表存入資料庫"
 msgctxt "#19073"
 msgid "Delay channel switch"
 msgstr "延遲頻道切換"
-
-msgctxt "#19074"
-msgid "Active:"
-msgstr ""
 
 msgctxt "#19075"
 msgid "Name:"
@@ -6253,10 +6217,6 @@ msgstr "優先權："
 msgctxt "#19083"
 msgid "Lifetime (days):"
 msgstr "生命周期(天)"
-
-msgctxt "#19084"
-msgid "First day:"
-msgstr ""
 
 msgctxt "#19085"
 msgid "Unknown channel %u"
@@ -6321,10 +6281,6 @@ msgstr "請切換到另一個頻道"
 msgctxt "#19104"
 msgid "Enter the name of the folder for the recording"
 msgstr "輸入存放這個錄影的資料夾名稱"
-
-msgctxt "#19106"
-msgid "Next timer on"
-msgstr ""
 
 msgctxt "#19107"
 msgid "at"
@@ -6408,11 +6364,11 @@ msgstr "結束日期"
 
 msgctxt "#19130"
 msgid "Minimum duration"
-msgstr ""
+msgstr "最小時間長度"
 
 msgctxt "#19131"
 msgid "Maximum duration"
-msgstr ""
+msgstr "最大時間長度"
 
 msgctxt "#19132"
 msgid "Include unknown genres"
@@ -6526,13 +6482,9 @@ msgctxt "#19160"
 msgid "to"
 msgstr "到"
 
-msgctxt "#19162"
-msgid "Recording active"
-msgstr ""
-
 msgctxt "#19163"
 msgid "Recordings"
-msgstr "錄音"
+msgstr "錄影"
 
 msgctxt "#19164"
 msgid "Cannot start recording. Check the log for details."
@@ -6550,17 +6502,9 @@ msgctxt "#19167"
 msgid "Scan for missing icons"
 msgstr "尋找遺失的圖示"
 
-msgctxt "#19168"
-msgid "Switch channel without pressing OK"
-msgstr "切換頻道不需要按確定"
-
 msgctxt "#19169"
 msgid "Hide video information box"
 msgstr "隱藏視訊資訊盒"
-
-msgctxt "#19170"
-msgid "Timeout when starting playback"
-msgstr ""
 
 msgctxt "#19171"
 msgid "Start playback minimized"
@@ -6568,7 +6512,7 @@ msgstr "開始播放時最小化"
 
 msgctxt "#19172"
 msgid "Instant recording duration"
-msgstr ""
+msgstr "即時錄影長度"
 
 msgctxt "#19173"
 msgid "Default recording priority"
@@ -6700,7 +6644,7 @@ msgstr "群組管理"
 
 msgctxt "#19206"
 msgid "Activate EPG:"
-msgstr ""
+msgstr "啟用電子節目表："
 
 msgctxt "#19207"
 msgid "Group:"
@@ -6724,7 +6668,7 @@ msgstr "刪除頻道"
 
 msgctxt "#19212"
 msgid "This list contains changes"
-msgstr ""
+msgstr "此清單含變動項目"
 
 msgctxt "#19213"
 msgid "Select backend"
@@ -6732,11 +6676,11 @@ msgstr "選擇後端"
 
 msgctxt "#19214"
 msgid "Enter a valid URL for the new channel"
-msgstr ""
+msgstr "輸入新頻道的有效 URL"
 
 msgctxt "#19215"
 msgid "The PVR backend does not support timers."
-msgstr ""
+msgstr "PVR 後端不支援定時器。"
 
 msgctxt "#19216"
 msgid "All radio channels"
@@ -6748,7 +6692,7 @@ msgstr "所有的電視頻道"
 
 msgctxt "#19218"
 msgid "Visible"
-msgstr ""
+msgstr "可見的"
 
 msgctxt "#19219"
 msgid "Ungrouped channels"
@@ -6756,11 +6700,11 @@ msgstr "未分組的頻道"
 
 msgctxt "#19220"
 msgid "Channels in"
-msgstr ""
+msgstr "頻道在"
 
 msgctxt "#19221"
 msgid "Synchronise channel groups with backends"
-msgstr ""
+msgstr "與後端同步頻道群組"
 
 msgctxt "#19222"
 msgid "EPG"
@@ -6768,7 +6712,7 @@ msgstr "電子節目表"
 
 msgctxt "#19223"
 msgid "No PVR add-on could be enabled. Check your settings or the log for more info."
-msgstr ""
+msgstr "沒有 PVR 附加元件可以被啟用。請檢查你的設定或者查閱日誌以取得更多資訊。"
 
 msgctxt "#19224"
 msgid "Recording aborted"
@@ -6792,15 +6736,15 @@ msgstr "錄影已刪除"
 
 msgctxt "#19229"
 msgid "Close channel OSD after switching channels"
-msgstr ""
+msgstr "切換頻道後關閉頻道 OSD"
 
 msgctxt "#19230"
 msgid "Prevent EPG updates while playing a TV stream"
-msgstr ""
+msgstr "播放電視串流時禁止更新電子節目表"
 
 msgctxt "#19231"
 msgid "Always use the channel order from the backend(s)"
-msgstr ""
+msgstr "永遠使用後端的頻道順序"
 
 msgctxt "#19232"
 msgid "Clear search results"
@@ -6812,7 +6756,7 @@ msgstr "定時器更新時顯示通知"
 
 msgctxt "#19234"
 msgid "Use backend channels numbers (only works with 1 enabled PVR addon)"
-msgstr ""
+msgstr "使用後端頻道號碼（只適用於1個已啟用的 PVR 附加元件）"
 
 msgctxt "#19235"
 msgid "PVR manager is starting up"
@@ -6828,11 +6772,11 @@ msgstr "正在從客戶端載入計時器"
 
 msgctxt "#19238"
 msgid "Loading recordings from clients"
-msgstr ""
+msgstr "正在從客戶端載入錄影"
 
 msgctxt "#19239"
 msgid "Starting background threads"
-msgstr ""
+msgstr "開始背景執行緒"
 
 msgctxt "#19240"
 msgid "No PVR add-on enabled"
@@ -6840,15 +6784,15 @@ msgstr "沒有啟用任何 PVR 附加元件"
 
 msgctxt "#19241"
 msgid "The PVR manager has been enabled without any"
-msgstr ""
+msgstr "PVR 管理員已啟用，但沒有啟用任何"
 
 msgctxt "#19242"
 msgid "enabled PVR add-on. Enable at least one add-on"
-msgstr ""
+msgstr "的 PVR 附加元件。為了使用 PVR 功能，"
 
 msgctxt "#19243"
 msgid "in order to use the PVR functionality."
-msgstr ""
+msgstr "請至少啟用一個附加元件。"
 
 msgctxt "#19244"
 msgid "Backend idle time"
@@ -6856,19 +6800,19 @@ msgstr "後端閒置時間"
 
 msgctxt "#19245"
 msgid "Set wakeup command (cmd [timestamp])"
-msgstr ""
+msgstr "設定喚醒命令 (cmd [timestamp])"
 
 msgctxt "#19246"
 msgid "Wakeup before recording"
-msgstr ""
+msgstr "錄影前喚醒"
 
 msgctxt "#19247"
 msgid "Daily wakeup"
-msgstr ""
+msgstr "每日喚醒"
 
 msgctxt "#19248"
 msgid "Daily wakeup time (HH:MM:SS)"
-msgstr ""
+msgstr "每日喚醒時間 (HH:MM:SS)"
 
 msgctxt "#19249"
 msgid "Filter channels"
@@ -6884,23 +6828,23 @@ msgstr "更新電子節目表資訊"
 
 msgctxt "#19252"
 msgid "Schedule EPG update for this channel?"
-msgstr ""
+msgstr "要將這個電子節目表的更新加入排程嗎？"
 
 msgctxt "#19253"
 msgid "EPG update scheduled for channel"
-msgstr ""
+msgstr "頻道電子節目表更新已經加入排程"
 
 msgctxt "#19254"
 msgid "EPG update failed for channel"
-msgstr ""
+msgstr "頻道電子節目表更新失敗"
 
 msgctxt "#19255"
 msgid "Start recording"
-msgstr ""
+msgstr "開始錄影"
 
 msgctxt "#19256"
 msgid "Stop recording"
-msgstr ""
+msgstr "停止錄影"
 
 msgctxt "#19257"
 msgid "Lock channel"
@@ -6916,7 +6860,7 @@ msgstr "家長控制"
 
 msgctxt "#19260"
 msgid "Unlock duration"
-msgstr ""
+msgstr "解鎖時間"
 
 msgctxt "#19261"
 msgid "Change PIN"
@@ -6940,11 +6884,11 @@ msgstr "輸入的 PIN 碼不正確。"
 
 msgctxt "#19266"
 msgid "Parental locked"
-msgstr ""
+msgstr "家長已鎖定"
 
 msgctxt "#19267"
 msgid "Parental locked:"
-msgstr ""
+msgstr "家長已鎖定："
 
 msgctxt "#19268"
 msgid "Do not show 'no information available' labels"
@@ -6952,11 +6896,11 @@ msgstr "不要顯示\"找不到資訊\"的標籤"
 
 msgctxt "#19269"
 msgid "Do not show 'connection lost' warnings"
-msgstr ""
+msgstr "不要顯示\"連線遺失\"的警告"
 
 msgctxt "#19270"
 msgid "* All recordings"
-msgstr ""
+msgstr "* 所有的錄影"
 
 msgctxt "#19271"
 msgid "No PVR add-ons could be found"
@@ -6964,11 +6908,11 @@ msgstr "找不到任何 PVR 附加元件"
 
 msgctxt "#19272"
 msgid "You need a tuner, backend software, and an"
-msgstr ""
+msgstr "你需要一個接收器 (tuner)、後端軟體和為該後端軟體"
 
 msgctxt "#19273"
 msgid "add-on for the backend to be able to use PVR."
-msgstr ""
+msgstr "設計的附加元件才能使用 PVR 功能。"
 
 msgctxt "#19274"
 msgid "Please visit xbmc.org/pvr to learn more."
@@ -6976,19 +6920,31 @@ msgstr "請拜訪 xbmc.org/pvr 以取得更多資訊。"
 
 msgctxt "#19275"
 msgid "Conflict warning"
-msgstr ""
+msgstr "衝突驚告"
 
 msgctxt "#19276"
 msgid "Conflict error"
-msgstr ""
+msgstr "衝突錯誤"
 
 msgctxt "#19277"
 msgid "Recording conflict"
-msgstr ""
+msgstr "錄影衝突"
 
 msgctxt "#19278"
 msgid "Recording error"
-msgstr ""
+msgstr "錄影錯誤"
+
+msgctxt "#19279"
+msgid "Client specific"
+msgstr "客戶端專用"
+
+msgctxt "#19280"
+msgid "Client specific settings"
+msgstr "客戶端專用設定"
+
+msgctxt "#19281"
+msgid "Confirm channel switches by pressing OK"
+msgstr "轉台時需要按「確定」確認"
 
 msgctxt "#19499"
 msgid "Other/Unknown"
@@ -7016,15 +6972,15 @@ msgstr "喜劇"
 
 msgctxt "#19505"
 msgid "Soap/Melodrama/Folkloric"
-msgstr ""
+msgstr "肥皂劇/通俗劇/民間故事"
 
 msgctxt "#19506"
 msgid "Romance"
-msgstr ""
+msgstr "浪漫愛情劇"
 
 msgctxt "#19507"
 msgid "Serious/Classical/Religious/Historical Movie/Drama"
-msgstr ""
+msgstr "嚴肅/古典/宗教/歷史 電影/戲劇"
 
 msgctxt "#19508"
 msgid "Adult Movie/Drama"
@@ -7032,7 +6988,7 @@ msgstr "成人電影/戲劇"
 
 msgctxt "#19516"
 msgid "News/Current Affairs"
-msgstr ""
+msgstr "新聞/時事"
 
 msgctxt "#19517"
 msgid "News/Weather Report"
@@ -7044,23 +7000,23 @@ msgstr "新聞雜誌"
 
 msgctxt "#19519"
 msgid "Documentary"
-msgstr ""
+msgstr "記錄"
 
 msgctxt "#19520"
 msgid "Discussion/Interview/Debate"
-msgstr ""
+msgstr "討論/面談/辯論"
 
 msgctxt "#19532"
 msgid "Show/Game Show"
-msgstr ""
+msgstr "展覽/遊戲展"
 
 msgctxt "#19533"
 msgid "Game Show/Quiz/Contest"
-msgstr ""
+msgstr "遊戲展/問答/競賽"
 
 msgctxt "#19534"
 msgid "Variety Show"
-msgstr ""
+msgstr "綜藝節目"
 
 msgctxt "#19535"
 msgid "Talk Show"
@@ -7072,7 +7028,7 @@ msgstr "運動"
 
 msgctxt "#19549"
 msgid "Special Event"
-msgstr ""
+msgstr "特殊事件"
 
 msgctxt "#19550"
 msgid "Sport Magazine"
@@ -7092,11 +7048,11 @@ msgstr "團隊運動"
 
 msgctxt "#19554"
 msgid "Athletics"
-msgstr ""
+msgstr "運動"
 
 msgctxt "#19555"
 msgid "Motor Sport"
-msgstr ""
+msgstr "汽車運動"
 
 msgctxt "#19556"
 msgid "Water Sport"
@@ -7108,11 +7064,11 @@ msgstr "水上運動"
 
 msgctxt "#19558"
 msgid "Equestrian"
-msgstr ""
+msgstr "騎術"
 
 msgctxt "#19559"
 msgid "Martial Sports"
-msgstr ""
+msgstr "武術"
 
 msgctxt "#19564"
 msgid "Children's/Youth Programmes"
@@ -7132,11 +7088,11 @@ msgstr "適合 10 到16 歲的娛樂節目"
 
 msgctxt "#19568"
 msgid "Informational/Educational/School Programme"
-msgstr ""
+msgstr "資訊/教育/校園講座"
 
 msgctxt "#19569"
 msgid "Cartoons/Puppets"
-msgstr ""
+msgstr "卡通/木偶"
 
 msgctxt "#19580"
 msgid "Music/Ballet/Dance"
@@ -7148,15 +7104,15 @@ msgstr "搖滾樂/流行音樂"
 
 msgctxt "#19582"
 msgid "Serious/Classical Music"
-msgstr ""
+msgstr "嚴肅/古典音樂"
 
 msgctxt "#19583"
 msgid "Folk/Traditional Music"
-msgstr ""
+msgstr "民謠/傳統音樂"
 
 msgctxt "#19584"
 msgid "Musical/Opera"
-msgstr ""
+msgstr "音樂劇/歌劇"
 
 msgctxt "#19585"
 msgid "Ballet"
@@ -7172,7 +7128,7 @@ msgstr "表演藝術"
 
 msgctxt "#19598"
 msgid "Fine Arts"
-msgstr ""
+msgstr "美術"
 
 msgctxt "#19599"
 msgid "Religion"
@@ -7188,7 +7144,7 @@ msgstr "文學"
 
 msgctxt "#19602"
 msgid "Film/Cinema"
-msgstr ""
+msgstr "電影/劇院"
 
 msgctxt "#19603"
 msgid "Experimental Film/Video"
@@ -7196,11 +7152,11 @@ msgstr "實驗 電影/視訊"
 
 msgctxt "#19604"
 msgid "Broadcasting/Press"
-msgstr ""
+msgstr "廣播/新聞"
 
 msgctxt "#19605"
 msgid "New Media"
-msgstr ""
+msgstr "新媒體"
 
 msgctxt "#19606"
 msgid "Arts/Culture Magazines"
@@ -7212,15 +7168,15 @@ msgstr "時尚"
 
 msgctxt "#19612"
 msgid "Social/Political/Economics"
-msgstr ""
+msgstr "社會/政治/經濟"
 
 msgctxt "#19613"
 msgid "Magazines/Reports/Documentary"
-msgstr ""
+msgstr "雜誌/報導/記錄"
 
 msgctxt "#19614"
 msgid "Economics/Social Advisory"
-msgstr ""
+msgstr "經濟/社會資詢"
 
 msgctxt "#19615"
 msgid "Remarkable People"
@@ -7228,7 +7184,7 @@ msgstr "傑出人士"
 
 msgctxt "#19628"
 msgid "Education/Science/Factual"
-msgstr ""
+msgstr "教育/科學/真相"
 
 msgctxt "#19629"
 msgid "Nature/Animals/Environment"
@@ -7236,23 +7192,23 @@ msgstr "自然/動物/環境"
 
 msgctxt "#19630"
 msgid "Technology/Natural Sciences"
-msgstr ""
+msgstr "技術/自然科學"
 
 msgctxt "#19631"
 msgid "Medicine/Physiology/Psychology"
-msgstr ""
+msgstr "醫學/生理學/心理學"
 
 msgctxt "#19632"
 msgid "Foreign Countries/Expeditions"
-msgstr ""
+msgstr "外國/探險"
 
 msgctxt "#19633"
 msgid "Social/Spiritual Sciences"
-msgstr ""
+msgstr "社會/精神科學"
 
 msgctxt "#19634"
 msgid "Further Education"
-msgstr ""
+msgstr "繼續教育"
 
 msgctxt "#19635"
 msgid "Languages"
@@ -7260,11 +7216,11 @@ msgstr "語言"
 
 msgctxt "#19644"
 msgid "Leisure/Hobbies"
-msgstr ""
+msgstr "休閒/嗜好"
 
 msgctxt "#19645"
 msgid "Tourism/Travel"
-msgstr ""
+msgstr "旅遊/旅行"
 
 msgctxt "#19646"
 msgid "Handicraft"
@@ -7272,11 +7228,11 @@ msgstr "手工藝"
 
 msgctxt "#19647"
 msgid "Motoring"
-msgstr ""
+msgstr "駕駛"
 
 msgctxt "#19648"
 msgid "Fitness &amp; Health"
-msgstr ""
+msgstr "健身與健康"
 
 msgctxt "#19649"
 msgid "Cooking"
@@ -7292,7 +7248,7 @@ msgstr "園藝"
 
 msgctxt "#19660"
 msgid "Special Characteristics"
-msgstr ""
+msgstr "特殊特性"
 
 msgctxt "#19661"
 msgid "Original Language"
@@ -7300,7 +7256,7 @@ msgstr "其他語言"
 
 msgctxt "#19662"
 msgid "Black &amp; White"
-msgstr ""
+msgstr "黑白"
 
 msgctxt "#19663"
 msgid "Unpublished"
@@ -7320,11 +7276,11 @@ msgstr "偵探/驚悚"
 
 msgctxt "#19678"
 msgid "Adventure/Western/War"
-msgstr ""
+msgstr "冒險/西部/戰爭"
 
 msgctxt "#19679"
 msgid "Science Fiction/Fantasy/Horror"
-msgstr ""
+msgstr "科幻/奇幻/恐怖"
 
 msgctxt "#19680"
 msgid "Comedy"
@@ -7332,15 +7288,15 @@ msgstr "喜劇"
 
 msgctxt "#19681"
 msgid "Soap/Melodrama/Folkloric"
-msgstr ""
+msgstr "肥皂劇/通俗劇/民間故事"
 
 msgctxt "#19682"
 msgid "Romance"
-msgstr ""
+msgstr "浪漫愛情劇"
 
 msgctxt "#19683"
 msgid "Serious/ClassicalReligion/Historical"
-msgstr ""
+msgstr "嚴肅/古典宗教/歷史"
 
 msgctxt "#19684"
 msgid "Adult"
@@ -8020,7 +7976,7 @@ msgstr "根據 EXIF 資訊旋轉圖片"
 
 msgctxt "#20185"
 msgid "Use poster view styles for TV shows"
-msgstr "使用海報模式顯示電視節目"
+msgstr "使用海報模式顯示電視劇"
 
 msgctxt "#20186"
 msgid "Please wait"
@@ -8032,7 +7988,7 @@ msgstr "UPnP"
 
 msgctxt "#20188"
 msgid "Announce library updates via UPnP"
-msgstr ""
+msgstr "透過 UPnP 公佈資料庫更新"
 
 msgctxt "#20189"
 msgid "Enable auto scrolling for plot & review"
@@ -8198,6 +8154,26 @@ msgctxt "#20316"
 msgid "Sort by: ID"
 msgstr "排序：標籤"
 
+msgctxt "#20317"
+msgid "Scanning movies using %s"
+msgstr "正在使用 %s 掃描電影"
+
+msgctxt "#20318"
+msgid "Scanning music videos using %s"
+msgstr "正在使用 %s 掃描音樂影片"
+
+msgctxt "#20319"
+msgid "Scanning tvshows using %s"
+msgstr "正在使用 %s 掃描電視節目"
+
+msgctxt "#20320"
+msgid "Scanning artists using %s"
+msgstr "正在使用 %s 掃描演出者"
+
+msgctxt "#20321"
+msgid "Scanning albums using %s"
+msgstr "正在使用 %s 掃描專輯"
+
 msgctxt "#20324"
 msgid "Play part..."
 msgstr "播放部分的…"
@@ -8276,7 +8252,7 @@ msgstr "影片"
 
 msgctxt "#20343"
 msgid "TV shows"
-msgstr "電視節目"
+msgstr "電視劇"
 
 msgctxt "#20344"
 msgid "This directory contains"
@@ -8308,7 +8284,7 @@ msgstr "票數"
 
 msgctxt "#20351"
 msgid "TV show information"
-msgstr "電視節目資訊"
+msgstr "電視劇資訊"
 
 msgctxt "#20352"
 msgid "Episode information"
@@ -8316,7 +8292,7 @@ msgstr "影集資訊"
 
 msgctxt "#20353"
 msgid "Loading TV show details"
-msgstr "正在載入電視節目詳細介紹"
+msgstr "正在載入電視劇詳細介紹"
 
 msgctxt "#20354"
 msgid "Fetching episode guide"
@@ -8328,11 +8304,11 @@ msgstr "載入影集情報至資料庫"
 
 msgctxt "#20356"
 msgid "Select TV show:"
-msgstr "選擇電視節目："
+msgstr "選擇電視劇："
 
 msgctxt "#20357"
 msgid "Enter the TV show name"
-msgstr "輸入電視節目名稱"
+msgstr "輸入電視劇名稱"
 
 msgctxt "#20358"
 msgid "Season %i"
@@ -8356,11 +8332,11 @@ msgstr "從資料庫移除影集"
 
 msgctxt "#20363"
 msgid "Remove TV show from library"
-msgstr "從資料庫移除電視節目"
+msgstr "從資料庫移除電視劇"
 
 msgctxt "#20364"
 msgid "TV show"
-msgstr "電視節目"
+msgstr "電視劇"
 
 msgctxt "#20365"
 msgid "Episode plot"
@@ -8412,7 +8388,7 @@ msgstr "原始標題"
 
 msgctxt "#20377"
 msgid "Refresh TV show information"
-msgstr "重新整理電視節目資訊"
+msgstr "重新整理電視劇資訊"
 
 msgctxt "#20378"
 msgid "Refresh info for all episodes?"
@@ -8420,7 +8396,7 @@ msgstr "重新整理所有影集資訊？"
 
 msgctxt "#20379"
 msgid "Selected folder contains a single TV show"
-msgstr "選擇的資料夾包含一個電視節目"
+msgstr "選擇的資料夾包含單一個電視劇"
 
 msgctxt "#20380"
 msgid "Exclude selected folder from scans"
@@ -8440,11 +8416,11 @@ msgstr "選擇的資料夾包含一個視訊"
 
 msgctxt "#20384"
 msgid "Link to TV show"
-msgstr "電視節目連接"
+msgstr "連結到電視劇"
 
 msgctxt "#20385"
 msgid "Remove link to TV show"
-msgstr "移除電視節目連接"
+msgstr "移除電視劇連結"
 
 msgctxt "#20386"
 msgid "Recently added movies"
@@ -8536,7 +8512,7 @@ msgstr "正在下載音樂影片資訊"
 
 msgctxt "#20409"
 msgid "Downloading TV show information"
-msgstr "正在下載電視節目資訊"
+msgstr "正在下載電視劇資訊"
 
 msgctxt "#20410"
 msgid "Trailer"
@@ -8548,7 +8524,7 @@ msgstr "連續播放"
 
 msgctxt "#20412"
 msgid "Flatten TV shows"
-msgstr "自動連續播放影集"
+msgstr "自動連續播放電視劇"
 
 msgctxt "#20413"
 msgid "Get fanart"
@@ -8634,10 +8610,6 @@ msgctxt "#20434"
 msgid "Sets"
 msgstr "影片集"
 
-msgctxt "#20435"
-msgid "Set movieset thumb"
-msgstr "設定影片集縮略圖"
-
 msgctxt "#20436"
 msgid "Export actor thumbs?"
 msgstr "匯出演員縮略圖"
@@ -8717,10 +8689,6 @@ msgstr "電台"
 msgctxt "#20455"
 msgid "Listeners"
 msgstr "電台"
-
-msgctxt "#20456"
-msgid "Set movieset fanart"
-msgstr "設定電影 Fanart"
 
 msgctxt "#20457"
 msgid "Movie set"
@@ -9162,6 +9130,10 @@ msgctxt "#21456"
 msgid "External storage"
 msgstr "外部儲存"
 
+msgctxt "#21457"
+msgid "Watched episode count"
+msgstr "已觀看的集數"
+
 msgctxt "#21460"
 msgid "Subtitle location"
 msgstr "字幕位置"
@@ -9188,15 +9160,15 @@ msgstr "影片之上"
 
 msgctxt "#21467"
 msgid "%.1f to %.1f"
-msgstr ""
+msgstr "%.1f 到 %.1f"
 
 msgctxt "#21468"
 msgid "%d to %d"
-msgstr ""
+msgstr "%d 到 %d"
 
 msgctxt "#21469"
 msgid "%s to %s"
-msgstr ""
+msgstr "%s 到 %s"
 
 msgctxt "#21800"
 msgid "File name"
@@ -9528,7 +9500,7 @@ msgstr "OpenGL 廠商："
 
 msgctxt "#22008"
 msgid "OpenGL renderer:"
-msgstr "OpenGL 渲染："
+msgstr "OpenGL 算繪器："
 
 msgctxt "#22009"
 msgid "OpenGL version:"
@@ -9696,7 +9668,7 @@ msgstr "正在執行"
 
 msgctxt "#23055"
 msgid "Scale Teletext to 4:3"
-msgstr ""
+msgstr "將 Teletext 比例調為4:3"
 
 msgctxt "#23100"
 msgid "External Player Active"
@@ -9704,11 +9676,11 @@ msgstr "外部播放機啟動"
 
 msgctxt "#23101"
 msgid "Click OK to terminate the player"
-msgstr "點選 OK 關閉播放機"
+msgstr "點選「確定」關閉播放機"
 
 msgctxt "#23104"
 msgid "Click OK when playback has ended"
-msgstr "播放完畢時點選 OK"
+msgstr "播放完畢時點選「確定」"
 
 msgctxt "#24000"
 msgid "Add-on"
@@ -9764,7 +9736,7 @@ msgstr "電視資訊"
 
 msgctxt "#24015"
 msgid "Music video information"
-msgstr "音樂錄影帶資訊"
+msgstr "音樂影片資訊"
 
 msgctxt "#24016"
 msgid "Album information"
@@ -9780,7 +9752,7 @@ msgstr "服務"
 
 msgctxt "#24019"
 msgid "PVR clients"
-msgstr ""
+msgstr "PVR 客戶端"
 
 msgctxt "#24020"
 msgid "Configure"
@@ -9808,7 +9780,7 @@ msgstr "Weather.com (標準)"
 
 msgctxt "#24029"
 msgid "Service for weather information"
-msgstr ""
+msgstr "天氣資訊所使用的服務"
 
 msgctxt "#24030"
 msgid "This Add-on can not be configured"
@@ -9868,7 +9840,7 @@ msgstr "可取得的更新"
 
 msgctxt "#24044"
 msgid "Dependencies not met"
-msgstr "Dependencies 不相符"
+msgstr "無法滿足相依關係"
 
 msgctxt "#24045"
 msgid "Add-on does not have the correct structure"
@@ -10000,7 +9972,7 @@ msgstr "〈黑名單〉"
 
 msgctxt "#24096"
 msgid "Add-on has been marked as broken in repository."
-msgstr "附加元件已經被標記為\"已損壞\"。"
+msgstr "附加元件已經被標記為「已損壞」。"
 
 msgctxt "#24097"
 msgid "Would you like to disable it on your system?"
@@ -10324,11 +10296,11 @@ msgstr "運行此版本的 %s 需要"
 
 msgctxt "#33075"
 msgid "XBMC revision of %s or greater to run."
-msgstr "XBMC為 %s 或更高版本。"
+msgstr "XBMC 為 %s 或更高版本。"
 
 msgctxt "#33076"
 msgid "Please update XBMC."
-msgstr "請升級XBMC。"
+msgstr "請更新 XBMC。"
 
 msgctxt "#33077"
 msgid "No data found!"
@@ -10472,7 +10444,7 @@ msgstr "找不到前一個播放項目"
 
 msgctxt "#34300"
 msgid "Failed to start zeroconf"
-msgstr "Zeroconf啟動失敗"
+msgstr "Zeroconf 啟動失敗"
 
 msgctxt "#34301"
 msgid "Is Apple's Bonjour Service installed? See log for more info."
@@ -10558,9 +10530,9 @@ msgctxt "#35100"
 msgid "Enable joystick and gamepad support"
 msgstr "啟用搖桿和手把支援"
 
-msgctxt "#35101"
-msgid "Disable joystick when iMON is present"
-msgstr ""
+msgctxt "#35102"
+msgid "Disable joystick when device is present"
+msgstr "當有裝置時停用搖桿"
 
 msgctxt "#35500"
 msgid "Location"
@@ -10676,11 +10648,11 @@ msgstr "關閉 XBMC 時送出 \"非作用中來源\" 的命令"
 
 msgctxt "#36026"
 msgid "Put devices in standby mode when putting the PC in standby"
-msgstr ""
+msgstr "當電腦進入待機時讓裝置也待機"
 
 msgctxt "#36027"
 msgid "This device needs servicing"
-msgstr ""
+msgstr "此裝置需要服務"
 
 msgctxt "#36028"
 msgid "Ignore"
@@ -10704,7 +10676,7 @@ msgstr "連接埠忙碌中。同時只有一個程式可以使用 CEC 配接器�
 
 msgctxt "#36033"
 msgid "Pause playback when switching to another source"
-msgstr ""
+msgstr "切換到其他來源時暫停播放"
 
 msgctxt "#36035"
 msgid "Always"
@@ -10716,16 +10688,20 @@ msgstr "在開始/停止時"
 
 msgctxt "#36037"
 msgid "TV"
-msgstr ""
+msgstr "電視"
 
 msgctxt "#36038"
 msgid "Amplifier / AVR device"
-msgstr ""
+msgstr "放大器/AVR 裝置"
 
 msgctxt "#36039"
 msgid "TV and AVR device (explicit)"
-msgstr ""
+msgstr "電視和 AVR 裝置 (外接式)"
 
 msgctxt "#36040"
 msgid "Unsupported libCEC interface version. %x is lower than the version XBMC supports (%x)"
-msgstr ""
+msgstr "未支援的 libECE 介面版本。版本 %x 小於 XBMC 所支援的版本(%x)"
+
+msgctxt "#36041"
+msgid "* Item folder"
+msgstr "* 項目資料夾"

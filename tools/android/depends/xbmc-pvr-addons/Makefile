@@ -2,15 +2,19 @@ include ../Makefile.include
 DEPS= ../Makefile.include Makefile
 
 LIBNAME=xbmc-pvr-addons
-VERSION=1dc2b52e2d219fcac4d00227fd576e5f5158d7f3
+VERSION=5f97406cffb412ac5161c3dc51205caca009fcc7
 GIT_DIR=$(TARBALLS_LOCATION)/$(LIBNAME).git
 BASE_URL=git://github.com/opdenkamp/$(LIBNAME).git
 DYLIB=$(PLATFORM)/addons/pvr.demo/.libs/libpvrdemo-addon.so
 #tell git to use the addons repo rather than xbmc's repo
 export GIT_DIR
 export GIT_WORK_TREE=$(PLATFORM)
+
+#mysql_config is remarkably useless. Help configure find the right one.
+export MYSQL_CONFIG=$(PREFIX)/bin/mysql_config
+
 # configuration settings
-CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST)
+CONFIGURE=./configure --prefix=$(PREFIX) --host=$(HOST) --enable-addons-with-dependencies
 
 all: .installed-$(PLATFORM)
 
@@ -18,7 +22,7 @@ $(GIT_DIR)/HEAD:
 	cd $(TARBALLS_LOCATION); git clone --bare $(BASE_URL)
 
 $(GIT_DIR)/current/$(VERSION): $(GIT_DIR)/HEAD $(DEPS)
-	git rev-list -1 $(VERSION) >/dev/null || git fetch -a
+	git rev-list -1 $(VERSION) >/dev/null || git fetch origin "+refs/heads/*:refs/remotes/origin/*"
 	git rev-list -1 $(VERSION) >/dev/null
 	rm -rf $(GIT_DIR)/current; mkdir -p $(GIT_DIR)/current
 	touch $@

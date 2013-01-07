@@ -50,7 +50,7 @@ namespace XBMCAddon
       if (languageHook)
       {
         DelayedCallGuard dc(languageHook);
-        languageHook->registerPlayerCallback(this);
+        languageHook->RegisterPlayerCallback(this);
       }
     }
 
@@ -62,7 +62,7 @@ namespace XBMCAddon
       if (languageHook)
       {
         DelayedCallGuard dc(languageHook);
-        languageHook->unregisterPlayerCallback(this);
+        languageHook->UnregisterPlayerCallback(this);
       }
     }
 
@@ -372,6 +372,8 @@ namespace XBMCAddon
         {
           g_application.m_pPlayer->SetSubtitle(nStream);
           g_application.m_pPlayer->SetSubtitleVisible(true);
+          g_settings.m_currentVideoSettings.m_SubtitleDelay = 0.0f;
+          g_application.m_pPlayer->SetSubTitleDelay(g_settings.m_currentVideoSettings.m_SubtitleDelay);
         }
       }
     }

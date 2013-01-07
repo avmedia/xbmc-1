@@ -165,8 +165,6 @@ void CMusicInfoScanner::Process()
     bool bCanceled;
     if (m_scanType == 1) // load album info
     {
-      if (m_handle)
-        m_handle->SetTitle(g_localizeStrings.Get(21885));
       int iCurrentItem = 1;
       for (set<CAlbum>::iterator it=m_albumsToScan.begin();it != m_albumsToScan.end();++it)
       {
@@ -185,9 +183,6 @@ void CMusicInfoScanner::Process()
     }
     if (m_scanType == 2) // load artist info
     {
-      if (m_handle)
-        m_handle->SetTitle(g_localizeStrings.Get(21886));
-
       int iCurrentItem=1;
       for (set<CArtist>::iterator it=m_artistsToScan.begin();it != m_artistsToScan.end();++it)
       {
@@ -355,7 +350,7 @@ void CMusicInfoScanner::Stop()
   if (m_bCanInterrupt)
     m_musicDatabase.Interupt();
 
-  StopThread();
+  StopThread(false);
 }
 
 static void OnDirectoryScanned(const CStdString& strDirectory)
@@ -559,8 +554,8 @@ int CMusicInfoScanner::RetrieveMusicInfo(CFileItemList& items, const CStdString&
   // finally, add these to the database
   m_musicDatabase.BeginTransaction();
   int numAdded = 0;
-  set<long> albumsToScan;
-  set<long> artistsToScan;
+  set<int> albumsToScan;
+  set<int> artistsToScan;
   for (VECALBUMS::iterator i = albums.begin(); i != albums.end(); ++i)
   {
     vector<int> songIDs;
@@ -576,11 +571,11 @@ int CMusicInfoScanner::RetrieveMusicInfo(CFileItemList& items, const CStdString&
     albumsToScan.insert(idAlbum);
     for (vector<int>::iterator j = songIDs.begin(); j != songIDs.end(); ++j)
     {
-      vector<long> songArtists;
+      vector<int> songArtists;
       m_musicDatabase.GetArtistsBySong(*j, false, songArtists);
       artistsToScan.insert(songArtists.begin(), songArtists.end());
     }
-    std::vector<long> albumArtists;
+    std::vector<int> albumArtists;
     m_musicDatabase.GetArtistsByAlbum(idAlbum, false, albumArtists);
     artistsToScan.insert(albumArtists.begin(), albumArtists.end());
   }
@@ -588,7 +583,7 @@ int CMusicInfoScanner::RetrieveMusicInfo(CFileItemList& items, const CStdString&
 
   // Download info & artwork
   bool bCanceled;
-  for (set<long>::iterator it = artistsToScan.begin(); it != artistsToScan.end(); ++it)
+  for (set<int>::iterator it = artistsToScan.begin(); it != artistsToScan.end(); ++it)
   {
     bCanceled = false;
     if (find(m_artistsScanned.begin(),m_artistsScanned.end(), *it) == m_artistsScanned.end())
@@ -613,7 +608,7 @@ int CMusicInfoScanner::RetrieveMusicInfo(CFileItemList& items, const CStdString&
 
   if (m_flags & SCAN_ONLINE)
   {
-    for (set<long>::iterator it = albumsToScan.begin(); it != albumsToScan.end(); ++it)
+    for (set<int>::iterator it = albumsToScan.begin(); it != albumsToScan.end(); ++it)
     {
       if (m_bStop)
         return songsToAdd.size();
@@ -663,21 +658,23 @@ void CMusicInfoScanner::CategoriseAlbums(VECSONGS &songsToCheck, VECALBUMS &albu
     sort(songs.begin(), songs.end(), SortSongsByTrack);
 
     // map the songs to their primary artists
-    bool compilation = !i->first.empty();
+    bool tracksOverlap = false;
+    bool hasAlbumArtist = false;
+
     map<string, vector<CSong *> > artists;
     for (vector<CSong *>::iterator j = songs.begin(); j != songs.end(); ++j)
     {
       CSong *song = *j;
       // test for song overlap
       if (j != songs.begin() && song->iTrack == (*(j-1))->iTrack)
-        compilation = false;
+        tracksOverlap = true;
 
       // get primary artist
       string primary;
       if (!song->albumArtist.empty())
       {
         primary = song->albumArtist[0];
-        compilation = false;
+        hasAlbumArtist = true;
       }
       else if (!song->artist.empty())
         primary = song->artist[0];
@@ -688,19 +685,30 @@ void CMusicInfoScanner::CategoriseAlbums(VECSONGS &songsToCheck, VECALBUMS &albu
 
     /*
      We have a compilation if
-     1. album name is non-empty
-     2. no tracks overlap
-     3. no album artist is specified
-     4. we have at least two different primary artists
+     1. album name is non-empty AND
+     2. no tracks overlap AND
+     3a. a unique primary artist is specified as "various" or "various artists" OR
+     3b. we have at least two primary artists and no album artist specified.
      */
+    bool compilation = !i->first.empty() && !tracksOverlap; // 1+2
     if (artists.size() == 1)
+    {
+      string artist = artists.begin()->first; StringUtils::ToLower(artist);
+      if (!StringUtils::EqualsNoCase(artist, "various") &&
+          !StringUtils::EqualsNoCase(artist, "various artists")) // 3a
+        compilation = false;
+    }
+    else if (hasAlbumArtist) // 3b
       compilation = false;
+
     if (compilation)
     {
+      CLog::Log(LOGDEBUG, "Album '%s' is a compilation as there's no overlapping tracks and %s", i->first.c_str(), hasAlbumArtist ? "the album artist is 'Various'" : "there is more than one unique artist");
       artists.clear();
       std::string various = g_localizeStrings.Get(340); // Various Artists
+      vector<string> va; va.push_back(various);
       for (vector<CSong *>::iterator j = songs.begin(); j != songs.end(); ++j)
-        (*j)->albumArtist.push_back(various);
+        (*j)->albumArtist = va;
       artists.insert(make_pair(various, songs));
     }
 
@@ -762,7 +770,8 @@ void CMusicInfoScanner::FindArtForAlbums(VECALBUMS &albums, const CStdString &pa
   {
     CFileItem album(path, true);
     albumArt = album.GetUserMusicThumb(true);
-    albums[0].art["thumb"] = albumArt;
+    if (!albumArt.empty())
+      albums[0].art["thumb"] = albumArt;
   }
   for (VECALBUMS::iterator i = albums.begin(); i != albums.end(); ++i)
   {
@@ -806,7 +815,8 @@ void CMusicInfoScanner::FindArtForAlbums(VECALBUMS &albums, const CStdString &pa
         albumArt = CTextureCache::GetWrappedImageURL(art->strFileName, "music");
     }
 
-    album.art["thumb"] = albumArt;
+    if (!albumArt.empty())
+      album.art["thumb"] = albumArt;
 
     if (singleArt)
     { //if singleArt then we can clear the artwork for all songs
@@ -918,7 +928,7 @@ bool CMusicInfoScanner::DownloadAlbumInfo(const CStdString& strPath, const CStdS
 
   if (m_handle)
   {
-    m_handle->SetTitle(g_localizeStrings.Get(21885));
+    m_handle->SetTitle(StringUtils::Format(g_localizeStrings.Get(20321), info->Name().c_str()));
     m_handle->SetText(strArtist+" - "+strAlbum);
   }
 
@@ -1152,7 +1162,7 @@ bool CMusicInfoScanner::DownloadArtistInfo(const CStdString& strPath, const CStd
 
   if (m_handle)
   {
-    m_handle->SetTitle(g_localizeStrings.Get(21886));
+    m_handle->SetTitle(StringUtils::Format(g_localizeStrings.Get(20320), info->Name().c_str()));
     m_handle->SetText(strArtist);
   }
 

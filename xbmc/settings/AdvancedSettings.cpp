@@ -209,6 +209,7 @@ void CAdvancedSettings::Initialize()
 
   m_bVideoLibraryHideAllItems = false;
   m_bVideoLibraryAllItemsOnBottom = false;
+  m_iVideoLibraryRecentlyAddedItems = 25;
   m_bVideoLibraryHideEmptySeries = false;
   m_bVideoLibraryCleanOnUpdate = false;
   m_bVideoLibraryExportAutoThumbs = false;
@@ -236,6 +237,7 @@ void CAdvancedSettings::Initialize()
   m_iEpgCleanupInterval = 900;     /* remove old entries from the EPG every 15 minutes */
   m_iEpgActiveTagCheckInterval = 60; /* check for updated active tags every minute */
   m_iEpgRetryInterruptedUpdateInterval = 30; /* retry an interrupted epg update after 30 seconds */
+  m_iEpgUpdateEmptyTagsInterval = 60; /* override user selectable EPG update interval for empty EPG tags */
   m_bEpgDisplayUpdatePopup = true; /* display a progress popup while updating EPG data from clients */
   m_bEpgDisplayIncrementalUpdatePopup = false; /* also display a progress popup while doing incremental EPG updates */
 
@@ -293,6 +295,9 @@ void CAdvancedSettings::Initialize()
   m_iPVRMinVideoCacheLevel         = 5;
   m_iPVRMinAudioCacheLevel         = 10;
   m_bPVRCacheInDvdPlayer           = true;
+  m_bPVRChannelIconsAutoScan       = true;
+  m_bPVRAutoScanIconsUserSet       = false;
+  m_iPVRNumericChannelSwitchTimeout = 1000;
 
   m_measureRefreshrate = false;
 
@@ -641,6 +646,7 @@ void CAdvancedSettings::ParseSettingsFile(const CStdString &file)
   {
     XMLUtils::GetBoolean(pElement, "hideallitems", m_bVideoLibraryHideAllItems);
     XMLUtils::GetBoolean(pElement, "allitemsonbottom", m_bVideoLibraryAllItemsOnBottom);
+    XMLUtils::GetInt(pElement, "recentlyaddeditems", m_iVideoLibraryRecentlyAddedItems, 1, INT_MAX);
     XMLUtils::GetBoolean(pElement, "hideemptyseries", m_bVideoLibraryHideEmptySeries);
     XMLUtils::GetBoolean(pElement, "cleanonupdate", m_bVideoLibraryCleanOnUpdate);
     XMLUtils::GetString(pElement, "itemseparator", m_videoItemSeparator);
@@ -794,6 +800,7 @@ void CAdvancedSettings::ParseSettingsFile(const CStdString &file)
     XMLUtils::GetInt(pElement, "cleanupinterval", m_iEpgCleanupInterval);
     XMLUtils::GetInt(pElement, "activetagcheckinterval", m_iEpgActiveTagCheckInterval);
     XMLUtils::GetInt(pElement, "retryinterruptedupdateinterval", m_iEpgRetryInterruptedUpdateInterval);
+    XMLUtils::GetInt(pElement, "updateemptytagsinterval", m_iEpgUpdateEmptyTagsInterval);
     XMLUtils::GetBoolean(pElement, "displayupdatepopup", m_bEpgDisplayUpdatePopup);
     XMLUtils::GetBoolean(pElement, "displayincrementalupdatepopup", m_bEpgDisplayIncrementalUpdatePopup);
   }
@@ -978,6 +985,9 @@ void CAdvancedSettings::ParseSettingsFile(const CStdString &file)
     XMLUtils::GetInt(pPVR, "minvideocachelevel", m_iPVRMinVideoCacheLevel, 0, 100);
     XMLUtils::GetInt(pPVR, "minaudiocachelevel", m_iPVRMinAudioCacheLevel, 0, 100);
     XMLUtils::GetBoolean(pPVR, "cacheindvdplayer", m_bPVRCacheInDvdPlayer);
+    XMLUtils::GetBoolean(pPVR, "channeliconsautoscan", m_bPVRChannelIconsAutoScan);
+    XMLUtils::GetBoolean(pPVR, "autoscaniconsuserset", m_bPVRAutoScanIconsUserSet);
+    XMLUtils::GetInt(pPVR, "numericchannelswitchtimeout", m_iPVRNumericChannelSwitchTimeout, 50, 60000);
   }
 
   XMLUtils::GetBoolean(pRootElement, "measurerefreshrate", m_measureRefreshrate);
