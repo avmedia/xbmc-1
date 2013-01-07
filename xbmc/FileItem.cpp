@@ -357,7 +357,8 @@ CFileItem::CFileItem(const CMediaSource& share)
   m_bIsFolder = true;
   m_bIsShareOrDrive = true;
   m_strPath = share.strPath;
-  URIUtils::AddSlashAtEnd(m_strPath);
+  if (!IsRSS()) // no slash at end for rss feeds
+    URIUtils::AddSlashAtEnd(m_strPath);
   CStdString label = share.strName;
   if (!share.strStatus.IsEmpty())
     label.Format("%s (%s)", share.strName.c_str(), share.strStatus.c_str());
@@ -702,7 +703,17 @@ void CFileItem::ToSortable(SortItem &sortable)
     GetMusicInfoTag()->ToSortable(sortable);
     
   if (HasVideoInfoTag())
+  {
     GetVideoInfoTag()->ToSortable(sortable);
+
+    if (GetVideoInfoTag()->m_type == "tvshow")
+    {
+      if (HasProperty("totalepisodes"))
+        sortable[FieldNumberOfEpisodes] = GetProperty("totalepisodes");
+      if (HasProperty("unwatchedepisodes"))
+        sortable[FieldNumberOfWatchedEpisodes] = GetProperty("unwatchedepisodes");
+    }
+  }
     
   if (HasPictureInfoTag())
     GetPictureInfoTag()->ToSortable(sortable);
@@ -1401,25 +1412,29 @@ bool CFileItem::IsSamePath(const CFileItem *item) const
   if (IsMusicDb() && HasMusicInfoTag())
   {
     CFileItem dbItem(m_musicInfoTag->GetURL(), false);
-    dbItem.SetProperty("item_start", GetProperty("item_start"));
+    if (HasProperty("item_start"))
+      dbItem.SetProperty("item_start", GetProperty("item_start"));
     return dbItem.IsSamePath(item);
   }
   if (IsVideoDb() && HasVideoInfoTag())
   {
     CFileItem dbItem(m_videoInfoTag->m_strFileNameAndPath, false);
-    dbItem.SetProperty("item_start", GetProperty("item_start"));
+    if (HasProperty("item_start"))
+      dbItem.SetProperty("item_start", GetProperty("item_start"));
     return dbItem.IsSamePath(item);
   }
   if (item->IsMusicDb() && item->HasMusicInfoTag())
   {
     CFileItem dbItem(item->m_musicInfoTag->GetURL(), false);
-    dbItem.SetProperty("item_start", item->GetProperty("item_start"));
+    if (item->HasProperty("item_start"))
+      dbItem.SetProperty("item_start", item->GetProperty("item_start"));
     return IsSamePath(&dbItem);
   }
   if (item->IsVideoDb() && item->HasVideoInfoTag())
   {
     CFileItem dbItem(item->m_videoInfoTag->m_strFileNameAndPath, false);
-    dbItem.SetProperty("item_start", item->GetProperty("item_start"));
+    if (item->HasProperty("item_start"))
+      dbItem.SetProperty("item_start", item->GetProperty("item_start"));
     return IsSamePath(&dbItem);
   }
   if (HasProperty("original_listitem_url"))
@@ -1437,6 +1452,9 @@ void CFileItem::UpdateInfo(const CFileItem &item, bool replaceLabels /*=true*/)
   if (item.HasVideoInfoTag())
   { // copy info across (TODO: premiered info is normally stored in m_dateTime by the db)
     *GetVideoInfoTag() = *item.GetVideoInfoTag();
+    // preferably use some information from PVR info tag if available
+    if (HasPVRRecordingInfoTag())
+      GetPVRRecordingInfoTag()->CopyClientInfo(GetVideoInfoTag());
     SetOverlayImage(ICON_OVERLAY_UNWATCHED, GetVideoInfoTag()->m_playCount > 0);
   }
   if (item.HasMusicInfoTag())
@@ -1457,7 +1475,8 @@ void CFileItem::UpdateInfo(const CFileItem &item, bool replaceLabels /*=true*/)
 
 void CFileItem::SetFromVideoInfoTag(const CVideoInfoTag &video)
 {
-  SetLabel(video.m_strTitle);
+  if (!video.m_strTitle.empty())
+    SetLabel(video.m_strTitle);
   if (video.m_strFileNameAndPath.IsEmpty())
   {
     m_strPath = video.m_strPath;
@@ -1478,7 +1497,8 @@ void CFileItem::SetFromVideoInfoTag(const CVideoInfoTag &video)
 
 void CFileItem::SetFromAlbum(const CAlbum &album)
 {
-  SetLabel(album.strAlbum);
+  if (!album.strAlbum.empty())
+    SetLabel(album.strAlbum);
   m_bIsFolder = true;
   m_strLabel2 = StringUtils::Join(album.artist, g_advancedSettings.m_musicItemSeparator);
   GetMusicInfoTag()->SetAlbum(album);
@@ -1488,14 +1508,17 @@ void CFileItem::SetFromAlbum(const CAlbum &album)
 
 void CFileItem::SetFromSong(const CSong &song)
 {
-  SetLabel(song.strTitle);
-  m_strPath = song.strFileName;
+  if (!song.strTitle.empty())
+    SetLabel(song.strTitle);
+  if (!song.strFileName.empty())
+    m_strPath = song.strFileName;
   GetMusicInfoTag()->SetSong(song);
   m_lStartOffset = song.iStartOffset;
   m_lStartPartNumber = 1;
   SetProperty("item_start", song.iStartOffset);
   m_lEndOffset = song.iEndOffset;
-  SetArt("thumb", song.strThumb);
+  if (!song.strThumb.empty())
+    SetArt("thumb", song.strThumb);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1825,130 +1848,8 @@ void CFileItemList::Sort(SORT_METHOD sortMethod, SortOrder sortOrder)
   if (sortMethod == m_sortMethod && m_sortOrder == sortOrder)
     return;
 
-  SortDescription sorting;
+  SortDescription sorting = SortUtils::TranslateOldSortMethod(sortMethod);
   sorting.sortOrder = sortOrder;
-
-  switch (sortMethod)
-  {
-  case SORT_METHOD_LABEL:
-  case SORT_METHOD_LABEL_IGNORE_FOLDERS:
-  case SORT_METHOD_LABEL_IGNORE_THE:
-    sorting.sortBy = SortByLabel;
-    break;
-  case SORT_METHOD_DATE:
-    sorting.sortBy = SortByDate;
-    break;
-  case SORT_METHOD_SIZE:
-    sorting.sortBy = SortBySize;
-    break;
-  case SORT_METHOD_BITRATE:
-    sorting.sortBy = SortByBitrate;
-    break;      
-  case SORT_METHOD_DRIVE_TYPE:
-    sorting.sortBy = SortByDriveType;
-    break;
-  case SORT_METHOD_TRACKNUM:
-    sorting.sortBy = SortByTrackNumber;
-    break;
-  case SORT_METHOD_EPISODE:
-    sorting.sortBy = SortByEpisodeNumber;
-    break;
-  case SORT_METHOD_DURATION:
-  case SORT_METHOD_VIDEO_RUNTIME:
-    sorting.sortBy = SortByTime;
-    break;
-  case SORT_METHOD_TITLE:
-  case SORT_METHOD_TITLE_IGNORE_THE:
-  case SORT_METHOD_VIDEO_TITLE:
-    sorting.sortBy = SortByTitle;
-    break;
-  case SORT_METHOD_ARTIST:
-  case SORT_METHOD_ARTIST_IGNORE_THE:
-    sorting.sortBy = SortByArtist;
-    break;
-  case SORT_METHOD_ALBUM:
-  case SORT_METHOD_ALBUM_IGNORE_THE:
-    sorting.sortBy = SortByAlbum;
-    break;
-  case SORT_METHOD_GENRE:
-    sorting.sortBy = SortByGenre;
-    break;
-  case SORT_METHOD_COUNTRY:
-    sorting.sortBy = SortByCountry;
-    break;
-  case SORT_METHOD_DATEADDED:
-    sorting.sortBy = SortByDateAdded;
-    break;
-  case SORT_METHOD_FILE:
-    sorting.sortBy = SortByFile;
-    break;
-  case SORT_METHOD_SONG_RATING:
-  case SORT_METHOD_VIDEO_RATING:
-    sorting.sortBy = SortByRating;
-    break;
-  case SORT_METHOD_VIDEO_SORT_TITLE:
-  case SORT_METHOD_VIDEO_SORT_TITLE_IGNORE_THE:
-    sorting.sortBy = SortBySortTitle;
-    break;
-  case SORT_METHOD_YEAR:
-    sorting.sortBy = SortByYear;
-    break;
-  case SORT_METHOD_PRODUCTIONCODE:
-    sorting.sortBy = SortByProductionCode;
-    break;
-  case SORT_METHOD_PROGRAM_COUNT:
-    sorting.sortBy = SortByProgramCount;
-    break;
-  case SORT_METHOD_PLAYLIST_ORDER:
-    sorting.sortBy = SortByPlaylistOrder;
-    break;
-  case SORT_METHOD_MPAA_RATING:
-    sorting.sortBy = SortByMPAA;
-    break;
-  case SORT_METHOD_STUDIO:
-  case SORT_METHOD_STUDIO_IGNORE_THE:
-    sorting.sortBy = SortByStudio;
-    break;
-  case SORT_METHOD_FULLPATH:
-    sorting.sortBy = SortByPath;
-    break;
-  case SORT_METHOD_LASTPLAYED:
-    sorting.sortBy = SortByLastPlayed;
-    break;
-  case SORT_METHOD_PLAYCOUNT:
-    sorting.sortBy = SortByPlaycount;
-    break;
-  case SORT_METHOD_LISTENERS:
-    sorting.sortBy = SortByListeners;
-    break;    
-  case SORT_METHOD_CHANNEL:
-    sorting.sortBy = SortByChannel;
-    break;
-  default:
-    CLog::Log(LOGWARNING, "Unknown sort method %d", sortMethod);
-    return;
-  }
-
-  if (sortMethod == SORT_METHOD_LABEL_IGNORE_THE ||
-      sortMethod == SORT_METHOD_TITLE_IGNORE_THE ||
-      sortMethod == SORT_METHOD_ARTIST_IGNORE_THE ||
-      sortMethod == SORT_METHOD_ALBUM_IGNORE_THE ||
-      sortMethod == SORT_METHOD_VIDEO_SORT_TITLE_IGNORE_THE ||
-      sortMethod == SORT_METHOD_STUDIO_IGNORE_THE)
-    sorting.sortAttributes = (SortAttribute)((int)sorting.sortAttributes | SortAttributeIgnoreArticle);
-
-  if (sortMethod == SORT_METHOD_FILE        ||
-      sortMethod == SORT_METHOD_VIDEO_SORT_TITLE ||
-      sortMethod == SORT_METHOD_VIDEO_SORT_TITLE_IGNORE_THE ||
-      sortMethod == SORT_METHOD_LABEL_IGNORE_FOLDERS ||
-      sortMethod == SORT_METHOD_DATEADDED ||
-      sortMethod == SORT_METHOD_VIDEO_RATING ||
-      sortMethod == SORT_METHOD_YEAR ||
-      sortMethod == SORT_METHOD_PLAYLIST_ORDER ||
-      sortMethod == SORT_METHOD_LASTPLAYED ||
-      sortMethod == SORT_METHOD_PLAYCOUNT ||
-      m_sortIgnoreFolders)
-    sorting.sortAttributes = (SortAttribute)((int)sorting.sortAttributes | SortAttributeIgnoreFolders);
 
   Sort(sorting);
 
@@ -2729,9 +2630,11 @@ bool CFileItemList::AlwaysCache() const
   return false;
 }
 
-CStdString CFileItem::GetUserMusicThumb(bool alwaysCheckRemote /* = false */) const
+CStdString CFileItem::GetUserMusicThumb(bool alwaysCheckRemote /* = false */, bool fallbackToFolder /* = false */) const
 {
   if (m_strPath.IsEmpty()
+   || m_strPath.Left(19).Equals("newsmartplaylist://")
+   || m_strPath.Left(14).Equals("newplaylist://")
    || m_bIsShareOrDrive
    || IsInternetStream()
    || URIUtils::IsUPnP(m_strPath)
@@ -2746,6 +2649,13 @@ CStdString CFileItem::GetUserMusicThumb(bool alwaysCheckRemote /* = false */) co
   CStdString fileThumb(GetTBNFile());
   if (CFile::Exists(fileThumb))
     return fileThumb;
+
+  // Fall back to folder thumb, if requested
+  if (!m_bIsFolder && fallbackToFolder)
+  {
+    CFileItem item(URIUtils::GetDirectory(m_strPath), true);
+    return item.GetUserMusicThumb(alwaysCheckRemote);
+  }
 
   // if a folder, check for folder.jpg
   if (m_bIsFolder && !IsFileFolder() && (!IsRemote() || alwaysCheckRemote || g_guiSettings.GetBool("musicfiles.findremotethumbs")))
@@ -2816,6 +2726,8 @@ CStdString CFileItem::FindLocalArt(const std::string &artFile, bool useFolder) c
 {
   // ignore a bunch that are meaningless
   if (m_strPath.empty()
+   || m_strPath.Left(19).Equals("newsmartplaylist://")
+   || m_strPath.Left(14).Equals("newplaylist://")
    || m_bIsShareOrDrive
    || IsInternetStream()
    || URIUtils::IsUPnP(m_strPath)
@@ -2884,7 +2796,10 @@ CStdString CFileItem::GetLocalArt(const std::string &artFile, bool useFolder) co
     return "";
 
   if (useFolder)
-    return URIUtils::AddFileToFolder(strFile, artFile);
+  {
+    if (!artFile.empty())
+      return URIUtils::AddFileToFolder(strFile, artFile);
+  }
   else
   {
     if (artFile.empty()) // old thumbnail matching
@@ -2918,6 +2833,15 @@ CStdString CFileItem::GetMovieName(bool bUseFolderNames /* = false */) const
 {
   if (IsLabelPreformated())
     return GetLabel();
+
+  if (m_pvrRecordingInfoTag)
+    return m_pvrRecordingInfoTag->m_strTitle;
+  else if (CUtil::IsTVRecording(m_strPath))
+  {
+    CStdString title = CPVRRecording::GetTitleFromURL(m_strPath);
+    if (!title.IsEmpty())
+      return title;
+  }
 
   CStdString strMovieName = GetBaseMoviePath(bUseFolderNames);
 
@@ -3136,7 +3060,7 @@ bool CFileItemList::UpdateItem(const CFileItem *item)
     CFileItemPtr pItem = m_items[i];
     if (pItem->IsSamePath(item))
     {
-      *pItem = *item;
+      pItem->UpdateInfo(*item);
       return true;
     }
   }

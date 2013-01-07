@@ -27,6 +27,7 @@
 #include <taglib/id3v2tag.h>
 #include <taglib/apetag.h>
 #include <taglib/xiphcomment.h>
+#include <taglib/id3v1genres.h>
 
 #include <taglib/textidentificationframe.h>
 #include <taglib/uniquefileidentifierframe.h>
@@ -44,11 +45,28 @@
 #include "utils/URIUtils.h"
 #include "utils/log.h"
 #include "utils/StringUtils.h"
+#include "utils/CharsetConverter.h"
 #include "settings/AdvancedSettings.h"
 
 using namespace std;
 using namespace TagLib;
 using namespace MUSIC_INFO;
+
+class TagStringHandler : public ID3v2::Latin1StringHandler
+{
+public:
+  TagStringHandler() {}
+  virtual ~TagStringHandler() {}
+  virtual String parse(const ByteVector &data) const
+  {
+    CStdString strSource(data.data(), data.size());
+    CStdString strUTF8;
+    g_charsetConverter.unknownToUTF8(strSource, strUTF8);
+    return String(strUTF8, String::UTF8);
+  }
+};
+
+static const TagStringHandler StringHandler;
 
 CTagLoaderTagLib::CTagLoaderTagLib()
 {
@@ -84,6 +102,7 @@ bool CTagLoaderTagLib::Load(const string& strFileName, CMusicInfoTag& tag, Embed
     return false;
   }
   
+  ID3v2::Tag::setLatin1StringHandler(&StringHandler);
   TagLib::File*              file = NULL;
   TagLib::APE::File*         apeFile = NULL;
   TagLib::ASF::File*         asfFile = NULL;
@@ -134,6 +153,7 @@ bool CTagLoaderTagLib::Load(const string& strFileName, CMusicInfoTag& tag, Embed
     if (!file || !file->isValid())
     {
       delete file;
+      oggFlacFile = NULL;
       file = oggVorbisFile = new Ogg::Vorbis::File(stream);
     }
   }
@@ -149,6 +169,7 @@ bool CTagLoaderTagLib::Load(const string& strFileName, CMusicInfoTag& tag, Embed
   APE::Tag *ape = NULL;
   ASF::Tag *asf = NULL;
   MP4::Tag *mp4 = NULL;
+  ID3v1::Tag *id3v1 = NULL;
   ID3v2::Tag *id3v2 = NULL;
   Ogg::XiphComment *xiph = NULL;
   Tag *generic = NULL;
@@ -166,6 +187,7 @@ bool CTagLoaderTagLib::Load(const string& strFileName, CMusicInfoTag& tag, Embed
     mp4 = mp4File->tag();
   else if (mpegFile)
   {
+    id3v1 = mpegFile->ID3v1Tag(false);
     id3v2 = mpegFile->ID3v2Tag(false);
     ape = mpegFile->APETag(false);
   }
@@ -183,27 +205,24 @@ bool CTagLoaderTagLib::Load(const string& strFileName, CMusicInfoTag& tag, Embed
   if (file->audioProperties())
     tag.SetDuration(file->audioProperties()->length());
 
-  if (ape && !g_advancedSettings.m_prioritiseAPEv2tags)
-    ParseAPETag(ape, art, tag);
-
   if (asf)
     ParseASF(asf, art, tag);
-  else if (id3v2)
+  if (id3v1)
+    ParseID3v1Tag(id3v1, art, tag);
+  if (id3v2)
     ParseID3v2Tag(id3v2, art, tag);
-  else if (generic)
+  if (generic)
     ParseGenericTag(generic, art, tag);
-  else if (mp4)
+  if (mp4)
     ParseMP4Tag(mp4, art, tag);
-  else if (xiph)
+  if (xiph) // xiph tags override id3v2 tags in badly tagged FLACs
     ParseXiphComment(xiph, art, tag);
+  if (ape && (!id3v2 || g_advancedSettings.m_prioritiseAPEv2tags)) // ape tags override id3v2 if we're prioritising them
+    ParseAPETag(ape, art, tag);
 
   // art for flac files is outside the tag
   if (flacFile)
     SetFlacArt(flacFile, art, tag);
-
-  // Add APE tags over the top of ID3 tags if we want to prioritize them
-  if (ape && g_advancedSettings.m_prioritiseAPEv2tags)
-    ParseAPETag(ape, art, tag);
 
   if (!tag.GetTitle().IsEmpty() || !tag.GetArtist().empty() || !tag.GetAlbum().IsEmpty())
     tag.SetLoaded();
@@ -235,7 +254,7 @@ bool CTagLoaderTagLib::ParseASF(ASF::Tag *asf, EmbeddedArt *art, CMusicInfoTag& 
       else
         tag.SetTrackNumber(atoi(it->second.front().toString().toCString(true)));
     }
-    else if (it->first == "WM/PartOfSet")                tag.SetPartOfSet(it->second.front().toUInt());
+    else if (it->first == "WM/PartOfSet")                tag.SetPartOfSet(atoi(it->second.front().toString().toCString(true)));
     else if (it->first == "WM/Genre")                    SetGenre(tag, GetASFStringList(it->second));
     else if (it->first == "WM/AlbumArtistSortOrder")     {} // Known unsupported, supress warnings
     else if (it->first == "WM/ArtistSortOrder")          {} // Known unsupported, supress warnings
@@ -285,6 +304,19 @@ char POPMtoXBMC(int popm)
   if (popm < 0xc0) return '3';
   if (popm < 0xff) return '4';
   return '5';
+}
+
+bool CTagLoaderTagLib::ParseID3v1Tag(ID3v1::Tag *id3v1, EmbeddedArt *art, CMusicInfoTag& tag)
+{
+  if (!id3v1) return false;
+  tag.SetTitle(id3v1->title().to8Bit(true));
+  tag.SetArtist(id3v1->artist().to8Bit(true));
+  tag.SetAlbum(id3v1->album().to8Bit(true));
+  tag.SetComment(id3v1->comment().to8Bit(true));
+  tag.SetGenre(id3v1->genre().to8Bit(true));
+  tag.SetYear(id3v1->year());
+  tag.SetTrackNumber(id3v1->track());
+  return true;
 }
 
 bool CTagLoaderTagLib::ParseID3v2Tag(ID3v2::Tag *id3v2, EmbeddedArt *art, CMusicInfoTag& tag)
@@ -344,6 +376,8 @@ bool CTagLoaderTagLib::ParseID3v2Tag(ID3v2::Tag *id3v2, EmbeddedArt *art, CMusic
         else if (frame->description() == "replaygain_album_gain")       tag.SetReplayGainAlbumGain((int)(atof(stringList.front().toCString(true)) * 100 + 0.5));
         else if (frame->description() == "replaygain_track_peak")       tag.SetReplayGainTrackPeak((float)atof(stringList.front().toCString(true)));
         else if (frame->description() == "replaygain_album_peak")       tag.SetReplayGainAlbumPeak((float)atof(stringList.front().toCString(true)));
+        else if (frame->description() == "ALBUMARTIST")                 SetAlbumArtist(tag, StringListToVectorString(stringList));
+        else if (frame->description() == "ALBUM ARTIST")                SetAlbumArtist(tag, StringListToVectorString(stringList));
         else if (g_advancedSettings.m_logLevel == LOG_LEVEL_MAX)
           CLog::Log(LOGDEBUG, "unrecognized user text tag detected: TXXX:%s", frame->description().toCString(true));
       }
@@ -425,7 +459,7 @@ bool CTagLoaderTagLib::ParseAPETag(APE::Tag *ape, EmbeddedArt *art, CMusicInfoTa
     else if (it->first == "ALBUM ARTIST")              SetAlbumArtist(tag, StringListToVectorString(it->second.toStringList()));
     else if (it->first == "ALBUM")                     tag.SetAlbum(it->second.toString().to8Bit(true));
     else if (it->first == "TITLE")                     tag.SetTitle(it->second.toString().to8Bit(true));
-    else if (it->first == "TRACKNUMBER")               tag.SetTrackNumber(it->second.toString().toInt());
+    else if (it->first == "TRACKNUMBER" || it->first == "TRACK") tag.SetTrackNumber(it->second.toString().toInt());
     else if (it->first == "DISCNUMBER")                tag.SetPartOfSet(it->second.toString().toInt());
     else if (it->first == "YEAR")                      tag.SetYear(it->second.toString().toInt());
     else if (it->first == "GENRE")                     SetGenre(tag, StringListToVectorString(it->second.toStringList()));
@@ -631,8 +665,24 @@ void CTagLoaderTagLib::SetAlbumArtist(CMusicInfoTag &tag, const vector<string> &
 
 void CTagLoaderTagLib::SetGenre(CMusicInfoTag &tag, const vector<string> &values)
 {
-  if (values.size() == 1)
-    tag.SetGenre(values[0]);
+  /*
+   TagLib doesn't resolve ID3v1 genre numbers in the case were only
+   a number is specified, thus this workaround.
+   */
+  vector<string> genres;
+  for (vector<string>::const_iterator i = values.begin(); i != values.end(); ++i)
+  {
+    string genre = *i;
+    if (StringUtils::IsNaturalNumber(genre))
+    {
+      int number = strtol(i->c_str(), NULL, 10);
+      if (number >= 0 && number < 256)
+        genre = ID3v1::genre(number).to8Bit(true);
+    }
+    genres.push_back(genre);
+  }
+  if (genres.size() == 1)
+    tag.SetGenre(genres[0]);
   else
-    tag.SetGenre(values);
+    tag.SetGenre(genres);
 }

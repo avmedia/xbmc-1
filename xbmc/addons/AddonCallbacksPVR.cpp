@@ -130,7 +130,7 @@ void CAddonCallbacksPVR::PVRTransferChannelGroupMember(void *addonData, const AD
   else if (group->IsRadio() == channel->IsRadio())
   {
     /* transfer this entry to the group */
-    group->AddToGroup(*channel, member->iChannelNumber, false);
+    group->AddToGroup(*channel, member->iChannelNumber);
   }
 }
 
@@ -238,6 +238,7 @@ void CAddonCallbacksPVR::PVRAddMenuHook(void *addonData, PVR_MENUHOOK *hook)
     PVR_MENUHOOK hookInt;
     hookInt.iHookId            = hook->iHookId;
     hookInt.iLocalizedStringId = hook->iLocalizedStringId;
+    hookInt.category           = hook->category;
 
     /* add this new hook */
     hooks->push_back(hookInt);
